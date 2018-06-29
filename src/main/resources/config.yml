@@ -1,0 +1,88 @@
+#MySQL:
+mysql:
+  enabled: false
+  username: "root"
+  password: "password"
+  ip: "127.0.0.1"
+  port: 3306
+  database: "kitpvp"
+
+#Configuration
+kit_selector:
+  material: 'CHEST'
+  name: '&aKit Selector'
+  slot: 0
+  title: '&eSelect a kit to fight with'
+  size: 54
+
+kit_shop:
+  material: 'ANVIL'
+  name: '&aKit Shop'
+  slot: 8
+  title: '&eSelect a kit to buy'
+  size: 54
+
+kit_owned:
+  name: '&a%kit%'
+  lore:
+    - '&eYou own this kit'
+    - ''
+    - '&eLeftclick to select it'
+
+kit_not_owned:
+  name: '&c%kit%'
+  lore:
+    - '&eYou do not own this kit'
+    - ''
+    - '&ePrice: &6%price%'
+    - '&eLeftclick to purchase it'
+
+kit_buy:
+  title: '&eDo you want to buy &6%kit%'
+  size: 27
+
+kit_buy_confirm:
+  material: 'STAINED_GLASS_PANE'
+  name: '&a&lBUY'
+  slot: 12
+  durability: 5
+  lore:
+    - '&ePrice: &6%price%'
+    - ''
+    - '&eLeftclick to confirm this purchase'
+
+kit_buy_cancel:
+  material: 'STAINED_GLASS_PANE'
+  name: '&a&lBUY'
+  slot: 14
+  durability: 14
+  lore:
+    - '&eLeftclick to cancel this purchase'
+
+sign:
+  line_one: '[KitPvP]'
+  line_two: '%arena%'
+
+#Messages
+NO_PERMISSION: '&cYou do not have permission to execute this command'
+NOT_A_PLAYER: '&cYou need to be a player to execute this command'
+
+ARENA_HELP:
+  - '&8&m-------------------'
+  - '&3/arena create <name>'
+  - '&3/arena delete <arena>'
+  - '&3/arena setlocation <arena>'
+  - '&8&m-------------------'
+
+ARENA_ALREADY_EXISTS: '&eThe arena &6%arena% &ealready exists'
+ARENA_ONLY_LETTERS: '&cAn arena can only contain of letters'
+ARENA_CREATED: '&aThe arena &6%arena% &ahas been created'
+ARENA_DOES_NOT_EXIST: '&cThe arena %arena% does not exist'
+ARENA_DELETED: '&aThe arena &6%arena% &ahas been deleted'
+ARENA_LOCATION_SET: "&aThe arena &6%arena%&a's location has been set to your location"
+ARENA_LOCATION_NOT_SET: "&cThe arena %arena%'s location is not set"
+LOBBY_LOCATION_SET: "&aThe lobby has been set to your location"
+JOINED_ARENA: '&eYou joined the arena &6%arena%'
+NOT_ENOUGH_MONEY: '&cYou do not have enough money to buy the kit %kit%'
+BOUGHT_KIT: '&eYou bought the kit &6%kit% &efor &6%price%$'
+SELECTED_KIT: '&eYou selected the kit &6%kit%'

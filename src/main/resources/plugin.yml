@@ -1,0 +1,7 @@
+main: se.sweplox.kitpvp.KitPvP
+name: SweploxKitPvP
+version: 1.0
+
+commands:
+  arena:
+  setlobby:
