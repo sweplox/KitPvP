@@ -37,10 +37,12 @@ public abstract class Command implements CommandExecutor {
         }
 
         if(args.length > 0) {
-            for(Command subCommand : getSubCommands()) {
-                if(args[0].equalsIgnoreCase(subCommand.getName())) {
-                    subCommand.execute(sender, args);
-                    return true;
+            if (getSubCommands() != null) {
+                for (Command subCommand : getSubCommands()) {
+                    if (args[0].equalsIgnoreCase(subCommand.getName())) {
+                        subCommand.execute(sender, args);
+                        return true;
+                    }
                 }
             }
         }

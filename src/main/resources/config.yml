@@ -66,13 +66,14 @@ sign:
 #Messages
 NO_PERMISSION: '&cYou do not have permission to execute this command'
 NOT_A_PLAYER: '&cYou need to be a player to execute this command'
+USAGE: '&cUsage: %usage%'
 
 ARENA_HELP:
-  - '&8&m-------------------'
-  - '&3/arena create <name>'
-  - '&3/arena delete <arena>'
-  - '&3/arena setlocation <arena>'
-  - '&8&m-------------------'
+  - '&8&m------------------------------'
+  - '&e/arena create <name>'
+  - '&e/arena delete <arena>'
+  - '&e/arena setlocation <arena>'
+  - '&8&m------------------------------'
 
 ARENA_ALREADY_EXISTS: '&eThe arena &6%arena% &ealready exists'
 ARENA_ONLY_LETTERS: '&cAn arena can only contain of letters'
@@ -86,3 +87,12 @@ JOINED_ARENA: '&eYou joined the arena &6%arena%'
 NOT_ENOUGH_MONEY: '&cYou do not have enough money to buy the kit %kit%'
 BOUGHT_KIT: '&eYou bought the kit &6%kit% &efor &6%price%$'
 SELECTED_KIT: '&eYou selected the kit &6%kit%'
+
+STATS:
+  - '&8&m------------------------------'
+  - '&eStats: &6%player%'
+  - '&8&m------------------------------'
+  - '&eKills: &6%kills%'
+  - '&eDeaths: &6%deaths%'
+  - '&eKDR: &6%kdr%'
+  - '&8&m------------------------------'

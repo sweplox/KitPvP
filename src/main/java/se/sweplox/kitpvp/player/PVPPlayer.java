@@ -20,9 +20,7 @@ public class PVPPlayer {
         kits = new HashMap<>();
     }
 
-    public Player getPlayer() {
-        return player;
-    }
+    public Player getPlayer() { return player; }
 
     public Kit getKit() {
         return kit;
@@ -57,7 +55,8 @@ public class PVPPlayer {
     }
 
     public double getKdr() {
-        return kills / deaths;
+        if(deaths == 0) return (double) kills;
+        return (double) kills / deaths;
     }
 
     public boolean ownsKit(Kit kit) { return kits.containsKey(kit.getName().toLowerCase()); }

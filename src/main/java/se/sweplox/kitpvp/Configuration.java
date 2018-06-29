@@ -49,6 +49,7 @@ public class Configuration {
 
     public static String NO_PERMISSION;
     public static String NOT_A_PLAYER;
+    public static String USAGE;
     public static List<String> ARENA_HELP;
     public static String ARENA_ALREADY_EXISTS;
     public static String ARENA_ONLY_LETTERS;
@@ -62,6 +63,7 @@ public class Configuration {
     public static String NOT_ENOUGH_MONEY;
     public static String BOUGHT_KIT;
     public static String SELECTED_KIT;
+    public static List<String> STATS;
 
 
     public Configuration(KitPvP instance) {
@@ -109,6 +111,7 @@ public class Configuration {
         //Messages
         NO_PERMISSION = StringUtil.color(instance.getConfig().getString("NO_PERMISSION"));
         NOT_A_PLAYER = StringUtil.color(instance.getConfig().getString("NOT_A_PLAYER"));
+        USAGE = StringUtil.color(instance.getConfig().getString("USAGE"));
         ARENA_HELP = new ArrayList<>();
         instance.getConfig().getStringList("ARENA_HELP").forEach(string -> ARENA_HELP.add(StringUtil.color(string)));
         ARENA_ALREADY_EXISTS = StringUtil.color(instance.getConfig().getString("ARENA_ALREADY_EXISTS"));
@@ -123,6 +126,8 @@ public class Configuration {
         NOT_ENOUGH_MONEY = StringUtil.color(instance.getConfig().getString("NOT_ENOUGH_MONEY"));
         BOUGHT_KIT = StringUtil.color(instance.getConfig().getString("BOUGHT_KIT"));
         SELECTED_KIT = StringUtil.color(instance.getConfig().getString("SELECTED_KIT"));
+        STATS = new ArrayList<>();
+        instance.getConfig().getStringList("STATS").forEach(string -> STATS.add(StringUtil.color(string)));
 
         instance.getServer().getConsoleSender().sendMessage(StringUtil.color("&6[KitPvP] &aThe configuration has been loaded"));
     }

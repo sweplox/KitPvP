@@ -37,7 +37,7 @@ public class ArenaSetLocationCommand extends Command {
         Player player = (Player) sender;
 
         if(args.length == 1) {
-            player.sendMessage(getUsage());
+            player.sendMessage(Configuration.USAGE.replace("%usage%", getUsage()));
             return;
         }
 

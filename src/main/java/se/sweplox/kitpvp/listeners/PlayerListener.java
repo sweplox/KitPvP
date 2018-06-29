@@ -14,8 +14,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import se.sweplox.kitpvp.Configuration;
 import se.sweplox.kitpvp.KitPvP;
 import se.sweplox.kitpvp.arena.Arena;
@@ -141,8 +143,33 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        PVPPlayer pvpPlayer = instance.getPlayerManager().getPlayerByUUID(event.getEntity().getUniqueId());
+        Player player = event.getEntity();
+        PVPPlayer pvpPlayer = instance.getPlayerManager().getPlayerByUUID(player.getUniqueId());
+
+        if(pvpPlayer == null) return;
+
         pvpPlayer.setDeaths(pvpPlayer.getDeaths() + 1);
-        instance.getStorage().save(pvpPlayer);
+        pvpPlayer.setArena(null);
+        pvpPlayer.setKit(null);
+
+        if(player.getKiller() instanceof Player) {
+            Player killer = player.getKiller();
+            PVPPlayer pvpKiller = instance.getPlayerManager().getPlayerByUUID(killer.getUniqueId());
+
+            if(pvpKiller == null) return;
+
+            pvpKiller.setKills(pvpKiller.getKills() + 1);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        Player player = event.getPlayer();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                player.teleport(instance.getLobbyManager().getLobby().getLocation());
+            }
+        }.runTaskLater(instance, 1L);
     }
 }

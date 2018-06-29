@@ -10,6 +10,7 @@ import se.sweplox.kitpvp.arena.ArenaManager;
 import se.sweplox.kitpvp.command.CommandManager;
 import se.sweplox.kitpvp.arena.command.ArenaCommand;
 import se.sweplox.kitpvp.command.commands.SetLobbyCommand;
+import se.sweplox.kitpvp.command.commands.StatsCommand;
 import se.sweplox.kitpvp.kit.KitManager;
 import se.sweplox.kitpvp.kit.kits.DefaultKit;
 import se.sweplox.kitpvp.kit.kits.TestKit;
@@ -62,6 +63,7 @@ public class KitPvP extends JavaPlugin {
     private void registerCommands() {
         commandManager.register(new ArenaCommand(this));
         commandManager.register(new SetLobbyCommand(this));
+        commandManager.register(new StatsCommand(this));
     }
 
     private void registerListeners() {
