@@ -5,20 +5,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import se.sweplox.kitpvp.arena.Arena;
 import se.sweplox.kitpvp.arena.ArenaManager;
 import se.sweplox.kitpvp.command.CommandManager;
 import se.sweplox.kitpvp.arena.command.ArenaCommand;
 import se.sweplox.kitpvp.command.commands.SetLobbyCommand;
 import se.sweplox.kitpvp.command.commands.StatsCommand;
 import se.sweplox.kitpvp.kit.KitManager;
-import se.sweplox.kitpvp.kit.kits.DefaultKit;
-import se.sweplox.kitpvp.kit.kits.TestKit;
+import se.sweplox.kitpvp.kit.kits.ArcherKit;
+import se.sweplox.kitpvp.kit.kits.FighterKit;
+import se.sweplox.kitpvp.kit.kits.FishermanKit;
 import se.sweplox.kitpvp.listeners.ArenaListener;
 import se.sweplox.kitpvp.listeners.InventoryListener;
+import se.sweplox.kitpvp.listeners.KitListener;
 import se.sweplox.kitpvp.listeners.PlayerListener;
+import se.sweplox.kitpvp.listeners.kit.FishermanListener;
 import se.sweplox.kitpvp.lobby.LobbyManager;
-import se.sweplox.kitpvp.player.PVPPlayer;
 import se.sweplox.kitpvp.player.PlayerManager;
 import se.sweplox.kitpvp.storage.Storage;
 import se.sweplox.kitpvp.storage.type.YAMLStorage;
@@ -72,11 +73,16 @@ public class KitPvP extends JavaPlugin {
         pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryListener(this), this);
         pm.registerEvents(new ArenaListener(), this);
+        pm.registerEvents(new KitListener(), this);
+
+        //Kits
+        pm.registerEvents(new FishermanListener(this), this);
     }
 
     private void registerKits() {
-        kitManager.register(new DefaultKit());
-        kitManager.register(new TestKit());
+        kitManager.register(new FighterKit());
+        kitManager.register(new ArcherKit());
+        kitManager.register(new FishermanKit());
     }
 
     private void loadPlayers() {
@@ -87,6 +93,8 @@ public class KitPvP extends JavaPlugin {
 
             player.getInventory().clear();
             player.getInventory().setArmorContents(null);
+            player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
+
             if(lobby) player.teleport(lobbyManager.getLobby().getLocation());
         });
     }

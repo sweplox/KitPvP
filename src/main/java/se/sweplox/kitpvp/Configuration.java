@@ -63,6 +63,8 @@ public class Configuration {
     public static String NOT_ENOUGH_MONEY;
     public static String BOUGHT_KIT;
     public static String SELECTED_KIT;
+    public static String NOT_A_BOOLEAN;
+    public static String ARENA_SOUP_SET;
     public static List<String> STATS;
 
 
@@ -126,6 +128,8 @@ public class Configuration {
         NOT_ENOUGH_MONEY = StringUtil.color(instance.getConfig().getString("NOT_ENOUGH_MONEY"));
         BOUGHT_KIT = StringUtil.color(instance.getConfig().getString("BOUGHT_KIT"));
         SELECTED_KIT = StringUtil.color(instance.getConfig().getString("SELECTED_KIT"));
+        NOT_A_BOOLEAN = StringUtil.color(instance.getConfig().getString("NOT_A_BOOLEAN"));
+        ARENA_SOUP_SET = StringUtil.color(instance.getConfig().getString("ARENA_SOUP_SET"));
         STATS = new ArrayList<>();
         instance.getConfig().getStringList("STATS").forEach(string -> STATS.add(StringUtil.color(string)));
 

@@ -45,6 +45,7 @@ public class PlayerListener implements Listener {
 
         player.getInventory().clear();
         player.getInventory().setArmorContents(null);
+        player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
 
         instance.getPlayerManager().load(player);
 

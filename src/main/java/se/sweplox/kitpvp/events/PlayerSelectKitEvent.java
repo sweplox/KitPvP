@@ -1,21 +1,20 @@
 package se.sweplox.kitpvp.events;
 
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import se.sweplox.kitpvp.arena.Arena;
+import se.sweplox.kitpvp.kit.Kit;
 
-public class PlayerJoinArenaEvent extends Event {
+public class PlayerSelectKitEvent extends Event {
 
     private static final HandlerList handlerList = new HandlerList();
 
     private Player player;
-    private Arena arena;
+    private Kit kit;
 
-    public PlayerJoinArenaEvent(Player player, Arena arena) {
+    public PlayerSelectKitEvent(Player player, Kit kit) {
         this.player = player;
-        this.arena = arena;
+        this.kit = kit;
     }
 
     public static HandlerList getHandlerList() {
@@ -30,7 +29,5 @@ public class PlayerJoinArenaEvent extends Event {
         return player;
     }
 
-    public Arena getArena() {
-        return arena;
-    }
+    public Kit getKit() { return kit; }
 }

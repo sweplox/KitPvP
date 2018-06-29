@@ -1,9 +1,9 @@
 package se.sweplox.kitpvp.player;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import se.sweplox.kitpvp.KitPvP;
-import se.sweplox.kitpvp.kit.kits.DefaultKit;
+import se.sweplox.kitpvp.kit.kits.ArcherKit;
+import se.sweplox.kitpvp.kit.kits.FighterKit;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -21,8 +21,9 @@ public class PlayerManager {
     public void load(Player player) {
         PVPPlayer pvpPlayer = new PVPPlayer(player);
 
-        pvpPlayer.giveKit(new DefaultKit());
         instance.getStorage().load(pvpPlayer);
+        pvpPlayer.giveKit(new FighterKit());
+        pvpPlayer.giveKit(new ArcherKit());
 
         players.put(player.getUniqueId(), pvpPlayer);
     }

@@ -9,8 +9,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import se.sweplox.kitpvp.Configuration;
 import se.sweplox.kitpvp.KitPvP;
+import se.sweplox.kitpvp.arena.Arena;
+import se.sweplox.kitpvp.events.PlayerJoinArenaEvent;
+import se.sweplox.kitpvp.events.PlayerSelectKitEvent;
 import se.sweplox.kitpvp.kit.Kit;
 import se.sweplox.kitpvp.player.PVPPlayer;
 import se.sweplox.kitpvp.utils.ItemBuilder;
@@ -33,6 +37,9 @@ public class InventoryListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         PVPPlayer pvpPlayer = instance.getPlayerManager().getPlayerByUUID(player.getUniqueId());
         if(pvpPlayer == null) return;
+
+        Arena arena = pvpPlayer.getArena();
+        if(arena == null) return;
 
         Inventory inventory = event.getClickedInventory();
 
@@ -79,10 +86,26 @@ public class InventoryListener implements Listener {
         Kit kit = instance.getKitManager().getKitByName(name);
 
         if(inventory.getTitle().equals(Configuration.KIT_SELECTOR_TITLE)) {
-            player.getInventory().setContents(kit.getContents());
-            player.getInventory().setArmorContents(kit.getArmorContents());
+            PlayerInventory playerInventory = player.getInventory();
+
+            playerInventory.setContents(kit.getContents());
+            playerInventory.setArmorContents(kit.getArmorContents());
+
+            if(pvpPlayer.getArena().isSoup()) {
+                ItemStack soup = new ItemStack(Material.MUSHROOM_SOUP);
+                for(int i = 0; i < 36; i++) {
+                    if(playerInventory.getItem(i) == null) {
+                        playerInventory.setItem(i, soup);
+                    }
+                }
+            }
+
             player.sendMessage(Configuration.SELECTED_KIT.replace("%kit%", kit.getName()));
             player.closeInventory();
+
+            PlayerSelectKitEvent playerSelectKitEvent = new PlayerSelectKitEvent(player, kit);
+            instance.getServer().getPluginManager().callEvent(playerSelectKitEvent);
+            pvpPlayer.setKit(kit);
             return;
         } else if(inventory.getTitle().equals(Configuration.KIT_SHOP_TITLE)) {
             List<String> lore = new ArrayList<>();

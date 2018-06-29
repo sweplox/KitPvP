@@ -7,6 +7,7 @@ import se.sweplox.kitpvp.KitPvP;
 import se.sweplox.kitpvp.arena.command.subcommands.ArenaCreateCommand;
 import se.sweplox.kitpvp.arena.command.subcommands.ArenaDeleteCommand;
 import se.sweplox.kitpvp.arena.command.subcommands.ArenaSetLocationCommand;
+import se.sweplox.kitpvp.arena.command.subcommands.ArenaSetSoupCommand;
 import se.sweplox.kitpvp.command.Command;
 import se.sweplox.kitpvp.player.PVPPlayer;
 
@@ -27,7 +28,8 @@ public class ArenaCommand extends Command {
     public List<Command> getSubCommands() {
         return Arrays.asList(new ArenaCreateCommand(instance),
                 new ArenaSetLocationCommand(instance),
-                new ArenaDeleteCommand(instance));
+                new ArenaDeleteCommand(instance),
+                new ArenaSetSoupCommand(instance));
     }
 
     public String getPermission() {

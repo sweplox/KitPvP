@@ -10,6 +10,7 @@ public class Arena {
     private String name;
     private Location location;
     private HashMap<String, Kit> kits;
+    private boolean soup;
 
     public Arena(String name) {
         this.name = name;
@@ -34,4 +35,8 @@ public class Arena {
     public void setKits(HashMap<String, Kit> kits) {
         this.kits = kits;
     }
+
+    public boolean isSoup() { return soup; }
+
+    public void setSoup(boolean soup) { this.soup = soup; }
 }

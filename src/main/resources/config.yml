@@ -73,20 +73,23 @@ ARENA_HELP:
   - '&e/arena create <name>'
   - '&e/arena delete <arena>'
   - '&e/arena setlocation <arena>'
+  - '&e/arena setsoup <true:false>'
   - '&8&m------------------------------'
 
 ARENA_ALREADY_EXISTS: '&eThe arena &6%arena% &ealready exists'
 ARENA_ONLY_LETTERS: '&cAn arena can only contain of letters'
-ARENA_CREATED: '&aThe arena &6%arena% &ahas been created'
+ARENA_CREATED: '&eThe arena &6%arena% &Ehas been created'
 ARENA_DOES_NOT_EXIST: '&cThe arena %arena% does not exist'
-ARENA_DELETED: '&aThe arena &6%arena% &ahas been deleted'
-ARENA_LOCATION_SET: "&aThe arena &6%arena%&a's location has been set to your location"
+ARENA_DELETED: '&eThe arena &6%arena% &Ehas been deleted'
+ARENA_LOCATION_SET: "&eThe arena &6%arena%&e's location has been set to your location"
 ARENA_LOCATION_NOT_SET: "&cThe arena %arena%'s location is not set"
-LOBBY_LOCATION_SET: "&aThe lobby has been set to your location"
+LOBBY_LOCATION_SET: "&eThe lobby has been set to your location"
 JOINED_ARENA: '&eYou joined the arena &6%arena%'
 NOT_ENOUGH_MONEY: '&cYou do not have enough money to buy the kit %kit%'
 BOUGHT_KIT: '&eYou bought the kit &6%kit% &efor &6%price%$'
 SELECTED_KIT: '&eYou selected the kit &6%kit%'
+NOT_A_BOOLEAN: '%boolean% needs to be either true or false'
+ARENA_SOUP_SET: '&eSoups in the arena &6%arena% &ehas been set to &6%boolean%'
 
 STATS:
   - '&8&m------------------------------'

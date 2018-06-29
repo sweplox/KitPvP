@@ -94,6 +94,7 @@ public class YAMLStorage implements Storage {
         arenasConfig.set(path + ".name", arena.getName());
         if(arena.getLocation() != null) arenasConfig.set(path + ".location", LocationUtil.toString(arena.getLocation()));
         arenasConfig.set(path + ".kits", KitUtil.toString(arena.getKits().keySet()));
+        arenasConfig.set(path + ".soup", arena.isSoup());
         save(arenasConfig, arenas);
     }
 
@@ -113,8 +114,14 @@ public class YAMLStorage implements Storage {
         if(playersConfig.get(path) == null) return;
 
         HashMap<String, Kit> kits = new HashMap<>();
-        Set<String> kitSet = KitUtil.fromString(playersConfig.getString(path + ".kits"));
-        kitSet.forEach(kit -> kits.put(kit, instance.getKitManager().getKitByName(kit)));
+        if(playersConfig.getString(path + ".kits") != null) {
+            Set<String> kitSet = KitUtil.fromString(playersConfig.getString(path + ".kits"));
+            kitSet.forEach(kit -> {
+                if (instance.getKitManager().getKitByName(kit) != null) {
+                    kits.put(kit, instance.getKitManager().getKitByName(kit));
+                }
+            });
+        }
 
         pvpPlayer.setKits(kits);
         pvpPlayer.setKills(playersConfig.getInt(path + ".kills"));
@@ -143,12 +150,21 @@ public class YAMLStorage implements Storage {
             }
 
             HashMap<String, Kit> kits = new HashMap<>();
-            Set<String> kitSet = KitUtil.fromString(arenasConfig.getString(path + ".kits"));
-            kitSet.forEach(kit -> kits.put(kit, instance.getKitManager().getKitByName(kit)));
+            if(arenasConfig.getString(path + ".kits") != null) {
+                Set<String> kitSet = KitUtil.fromString(arenasConfig.getString(path + ".kits"));
+                kitSet.forEach(kit -> {
+                    if (instance.getKitManager().getKitByName(kit) != null) {
+                        kits.put(kit, instance.getKitManager().getKitByName(kit));
+                    }
+                });
+            }
+
+            boolean soup = arenasConfig.getBoolean(path + ".soup");
 
             Arena arena = new Arena(arenasConfig.getString(path + ".name"));
             arena.setLocation(location);
             arena.setKits(kits);
+            arena.setSoup(soup);
 
             instance.getArenaManager().load(arena);
         }
